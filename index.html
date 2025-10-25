@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Personal Site</title>
+  <meta name="description" content="Personal website and portfolio for Your Name." />
+  <meta property="og:title" content="Your Name — Personal Site" />
+  <meta property="og:description" content="Personal website and portfolio for Your Name." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://username.github.io/" />
+  <!-- Optional: Favicon (free). Replace /favicon.ico with your own file placed at the repo root. -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root{
+      --bg: #0b0c10; /* dark background */
+      --text: #e6edf3; /* light text */
+      --muted: #94a3b8; /* muted text */
+      --card: #111218; /* card bg */
+      --accent: #7c3aed; /* purple accent */
+      --accent-2: #22c55e; /* green accent */
+      --ring: rgba(124,58,237,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --maxw: 980px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#fafafa; --text:#0b0c10; --muted:#475569; --card:#ffffff; --ring:rgba(124,58,237,.25);} 
+      .grid-card{box-shadow: 0 12px 30px rgba(2,6,23,.06);} 
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:500 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; 
+      color:var(--text); background: radial-gradient(1200px 600px at 80% -10%, rgba(124,58,237,.15), transparent),
+                          radial-gradient(900px 450px at -10% 20%, rgba(34,197,94,.12), transparent),
+                          var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin:0 auto; padding:28px}
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; position:sticky; top:0; backdrop-filter:saturate(140%) blur(8px); background:color-mix(in srgb, var(--bg) 84%, transparent); border-bottom:1px solid color-mix(in srgb, var(--text) 12%, transparent);}
+    .brand{display:flex; align-items:center; gap:12px; padding:10px 0}
+    .avatar{inline-size:36px; block-size:36px; border-radius:50%; border:2px solid color-mix(in srgb, var(--text) 20%, transparent)}
+    .brand strong{font-weight:700}
+    .cta{display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:999px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); background: linear-gradient(180deg, color-mix(in srgb, var(--card) 90%, transparent), color-mix(in srgb, var(--card) 100%, transparent)); box-shadow: var(--shadow);}
+    .cta:hover{outline: 3px solid var(--ring)}
+
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:28px; padding:50px 0 12px}
+    .hero h1{font-size:clamp(28px, 6vw, 52px); line-height:1.1; margin:0 0 10px; letter-spacing:-.02em}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:26px 0}
+    .badge{border:1px solid color-mix(in srgb, var(--text) 12%, transparent); padding:8px 12px; border-radius:999px; font-size:14px; background:linear-gradient(180deg, color-mix(in srgb, var(--card) 96%, transparent), color-mix(in srgb, var(--card) 100%, transparent));}
+    .actions{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); background:linear-gradient(180deg, color-mix(in srgb, var(--card) 96%, transparent), color-mix(in srgb, var(--card) 100%, transparent)); box-shadow: var(--shadow)}
+    .btn.primary{background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, var(--card)), color-mix(in srgb, var(--accent) 10%, var(--card))); border-color: color-mix(in srgb, var(--accent) 40%, transparent)}
+    .btn:hover{outline:3px solid var(--ring)}
+
+    .portrait{border-radius:24px; inline-size:100%; aspect-ratio: 4 / 5; object-fit:cover; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); box-shadow: var(--shadow)}
+
+    .section{padding:46px 0}
+    .section h2{font-size:clamp(22px, 4vw, 32px); margin:0 0 10px}
+    .section p.lead{color:var(--muted); margin:0 0 20px}
+
+    .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
+    .grid-card{background:linear-gradient(180deg, color-mix(in srgb, var(--card) 98%, transparent), color-mix(in srgb, var(--card) 100%, transparent)); border:1px solid color-mix(in srgb, var(--text) 12%, transparent); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:12px; transition: transform .2s ease}
+    .grid-card:hover{transform: translateY(-3px)}
+    .grid-card small{color:var(--muted)}
+
+    .projects .thumb{inline-size:100%; aspect-ratio:16/9; border-radius:12px; object-fit:cover; border:1px solid color-mix(in srgb, var(--text) 12%, transparent)}
+
+    .contact-card{display:flex; align-items:center; justify-content:space-between; gap:12px}
+
+    footer{padding:36px 0 60px; color:var(--muted); text-align:center}
+
+    @media (max-width: 880px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr}
+      .contact-card{flex-direction:column; align-items:flex-start}
+    }
+
+    /* Accessibility helpers */
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+    :focus-visible{outline: 3px solid var(--ring); outline-offset: 2px; border-radius:10px}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container">
+      <div class="brand">
+        <!-- Replace avatar.png with your own image at repo root (free). Optional. -->
+        <img class="avatar" src="avatar.png" alt="Your avatar" onerror="this.style.display='none'" />
+        <strong>Your Name</strong>
+        <span style="color:var(--muted);">·</span>
+        <span style="color:var(--muted);">Your Title or Tagline</span>
+      </div>
+      <a class="cta" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-label="Introduction">
+      <div>
+        <h1>Hi, I’m <span style="color:var(--accent)">Your Name</span> — I build things for the web.</h1>
+        <p>I’m a [student/developer/designer] focused on [your focus]. This is my free, fast, and minimal personal site hosted on GitHub Pages.</p>
+        <div class="badges" aria-label="Skills">
+          <span class="badge">HTML/CSS/JS</span>
+          <span class="badge">React</span>
+          <span class="badge">Node</span>
+          <span class="badge">Design</span>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="#projects">See projects</a>
+          <a class="btn" href="https://github.com/username" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <!-- Optional portrait image (free). Replace portrait.jpg in repo root. -->
+      <img class="portrait" src="portrait.jpg" alt="Portrait of Your Name" onerror="this.style.display='none'" />
+    </section>
+
+    <section class="section about" id="about" aria-label="About">
+      <h2>About</h2>
+      <p class="lead">Short bio: who you are, what you like building, what you’re looking for.</p>
+      <p>Tip: keep 3–5 crisp sentences. Mention your favorite stack, recent accomplishments, and what you want next (e.g., "seeking internships").</p>
+    </section>
+
+    <section class="section projects" id="projects" aria-label="Projects">
+      <h2>Projects</h2>
+      <p class="lead">A few things I’ve built recently.</p>
+      <div class="grid">
+        <article class="grid-card">
+          <img class="thumb" src="project1.jpg" alt="Screenshot of Project 1" onerror="this.style.display='none'" />
+          <h3>Project One</h3>
+          <p>One-liner explaining what it does and why it’s interesting.</p>
+          <small>Tech: HTML, CSS, JS</small>
+          <p><a href="https://github.com/username/project-one" target="_blank" rel="noopener">Repo</a> · <a href="https://example.com/demo" target="_blank" rel="noopener">Live</a></p>
+        </article>
+        <article class="grid-card">
+          <img class="thumb" src="project2.jpg" alt="Screenshot of Project 2" onerror="this.style.display='none'" />
+          <h3>Project Two</h3>
+          <p>One-liner about the problem solved or results achieved.</p>
+          <small>Tech: React, Node</small>
+          <p><a href="https://github.com/username/project-two" target="_blank" rel="noopener">Repo</a> · <a href="#" target="_blank" rel="noopener">Live</a></p>
+        </article>
+        <article class="grid-card">
+          <img class="thumb" src="project3.jpg" alt="Screenshot of Project 3" onerror="this.style.display='none'" />
+          <h3>Project Three</h3>
+          <p>One-liner with metrics if possible (e.g., "~1k monthly users").</p>
+          <small>Tech: Python, Flask</small>
+          <p><a href="https://github.com/username/project-three" target="_blank" rel="noopener">Repo</a> · <a href="#" target="_blank" rel="noopener">Live</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-label="Contact">
+      <h2>Contact</h2>
+      <div class="grid-card contact-card">
+        <p class="lead">Want to reach out? Email me or connect via social:</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:you@example.com">Email me</a>
+          <a class="btn" href="https://twitter.com/your-handle" target="_blank" rel="noopener">Twitter/X</a>
+          <a class="btn" href="https://github.com/username" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <p style="color:var(--muted); margin-top:12px"><small>Privacy-friendly, free analytics idea: <a href="https://developers.google.com/analytics/devguides/collection/gtagjs" target="_blank" rel="noopener">Google Analytics</a> (free), or <a href="https://developers.cloudflare.com/analytics/web-analytics/" target="_blank" rel="noopener">Cloudflare Web Analytics</a> (free).</small></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="y"></span> Your Name · Built with 💜 and hosted free on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sets current year in footer, no dependencies, works on GH Pages for free.
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
